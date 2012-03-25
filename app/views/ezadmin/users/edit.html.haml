@@ -1,0 +1,12 @@
+.banner
+  .layout
+    .title
+      编辑用户
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  = render :partial => "form", :locals => {:user => @user}
+            

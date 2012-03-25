@@ -1,0 +1,14 @@
+.sass-cache/
+.bundle
+db/*.sqlite3
+*.log
+tmp/**/*
+doc/api
+doc/app
+*.swp
+*.psd
+*~
+.DS_Store
+config/database.yml
+Gemfile
+Gemfile.lock

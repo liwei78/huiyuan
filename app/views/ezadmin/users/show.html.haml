@@ -1,0 +1,41 @@
+.banner
+  .layout
+    .title
+      查看用户
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  %table.styled
+    %tbody
+      %tr
+        %td{:width => "20%"}
+          登录账号
+        %td
+          = @user.email
+      %tr
+        %td
+          显示名称
+        %td
+          = @user.name
+      %tr
+        %td
+          网站角色
+        %td
+          = @user.site_role
+          %span.grey
+            = @user.site_upgrade_state
+      %tr
+        %td
+          发布权限
+        %td
+          = @user.promotion
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", ezadmin_user_url(@user), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_ezadmin_user_url(@user)
+          

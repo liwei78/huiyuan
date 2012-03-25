@@ -1,0 +1,62 @@
+/*
+* design by liwei
+* railser.cn
+* hi@liwei.me
+*/
+$primary_color: #65C5B3;   //light
+$secondary_color: #1D8B75; //dark
+$grey: #888;
+/* general style */
+* {
+  margin: 0;
+  outline: medium none;
+  padding: 0; }
+
+body {
+  color: #000000;
+  font-size: 14px;
+  padding: 0;
+  margin: 0; 
+  font-family: 'arial', '宋体', 'sans-serif';
+  background-color: #F0EEEE;
+}
+
+table {
+	table-layout:fixed;
+}
+
+a {
+  text-decoration: none;
+  color: $secondary_color; }
+  img {
+    border: none; }
+
+a:hover {
+  text-decoration: none; }
+
+ul, ol {
+  list-style: none; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
+.text-right {
+  text-align: right; }
+
+.text-left {
+  text-align: left; }
+
+.text-center {
+  text-align: center; }
+
+.clearfix {
+  clear: both; }
+
+.hide {
+  display: none; }
+.grey {
+  color: grey;
+}

@@ -1,0 +1,1 @@
+SITE_SETTINGS = YAML.load_file(File.join(Rails.root.to_s, "config", "site_settings.yml"))[Rails.env]
