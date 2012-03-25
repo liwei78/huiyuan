@@ -1,7 +1,7 @@
 .banner
   .layout
     .title
-      查看用户
+      查看
 - unless flash[:notice].nil?
   .noticediv
     .layout
@@ -14,24 +14,17 @@
         %td{:width => "20%"}
           登录账号
         %td
-          = @user.email
+          = @user.login
       %tr
         %td
-          显示名称
+          名称
         %td
           = @user.name
       %tr
         %td
-          网站角色
+          创建日期
         %td
-          = @user.site_role
-          %span.grey
-            = @user.site_upgrade_state
-      %tr
-        %td
-          发布权限
-        %td
-          = @user.promotion
+          = @user.created_at.strftime("%Y-%m-%d")
     %tfoot
       %tr
         %td{:colspan => 2}

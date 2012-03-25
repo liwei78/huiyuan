@@ -12,17 +12,17 @@
       .layout
         .topnav
           .right
-            = link_to "退出", logout_url
+            = link_to "退出", ezadmin_logout_url
         .logo
           = image_tag("adminlogo.png")
         .nav
           %ul
             %li
-              = link_to "管理首页", root_url, :class => admin_nav?("index")
+              = link_to "管理首页", ezadmin_dashboard_url, :class => admin_nav?("index")
             %li
-              = link_to "用户管理", users_url, :class => admin_nav?("users")
+              = link_to "用户管理", ezadmin_users_url, :class => admin_nav?("users")
             %li
-              = link_to "信息管理", articles_url(:is_article => true), :class => admin_nav?("articles")
+              = link_to "信息管理", ezadmin_messages_url, :class => admin_nav?("messages")
             .clearfix
     .mainbox
       = yield

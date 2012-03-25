@@ -1,83 +1,79 @@
+# encoding: utf-8
 class Ezadmin::MessagesController < ApplicationController
-  # GET /messages
-  # GET /messages.json
+  before_filter :set_admin_nav_flag
+  before_filter :need_admin_login
+  
+  layout "admin"
+  
   def index
-    @messages = Message.all
-
+    @messages = Message.paginate(:page => params[:page], :per_page => 10, :order => "id desc")
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @messages }
+      format.html
     end
   end
-
-  # GET /messages/1
-  # GET /messages/1.json
+  
   def show
     @message = Message.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @message }
-    end
   end
 
-  # GET /messages/new
-  # GET /messages/new.json
   def new
     @message = Message.new
-
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @message }
+      format.html
     end
   end
 
-  # GET /messages/1/edit
   def edit
     @message = Message.find(params[:id])
   end
 
-  # POST /messages
-  # POST /messages.json
   def create
     @message = Message.new(params[:message])
-
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render json: @message, status: :created, location: @message }
+        flash[:notice] = '添加成功'
+        format.html { redirect_to(ezadmin_message_url(@message)) }
       else
-        format.html { render action: "new" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
       end
     end
   end
 
-  # PUT /messages/1
-  # PUT /messages/1.json
   def update
     @message = Message.find(params[:id])
 
     respond_to do |format|
       if @message.update_attributes(params[:message])
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { head :ok }
+        flash[:notice] = '编辑成功'
+        format.html { redirect_to(ezadmin_message_url(@message)) }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
       end
     end
   end
 
-  # DELETE /messages/1
-  # DELETE /messages/1.json
   def destroy
     @message = Message.find(params[:id])
     @message.destroy
-
     respond_to do |format|
-      format.html { redirect_to messages_url }
-      format.json { head :ok }
+      flash[:notice] = '删除成功'
+      format.html { redirect_to(ezadmin_messages_url) }
     end
+  end
+  
+  def publish
+    @message = Message.find(params[:id])
+    User.find_each(:batch_size => 10) do |user|
+      UserMessage.create(:user_id => user.id, :title => @message.title, :content => @message.content)
+    end if @message
+    respond_to do |format|
+      flash[:notice] = '发布成功。所有用户可见该信息。'
+      format.html { redirect_to(ezadmin_messages_url) }
+    end
+  end
+  
+  private
+  def set_admin_nav_flag
+    @admin_nav_flag = "messages"
   end
 end

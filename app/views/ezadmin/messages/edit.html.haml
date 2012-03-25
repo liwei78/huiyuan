@@ -1,6 +1,12 @@
-<h1>Editing message</h1>
+.banner
+  .layout
+    .title
+      编辑
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @message %> |
-<%= link_to 'Back', messages_path %>
+.layout
+  = render :partial => "form", :locals => {:message => @message}
+            

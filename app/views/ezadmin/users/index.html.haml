@@ -1,7 +1,7 @@
 .banner
   .layout
     .title
-      用户管理
+      列表
 - unless flash[:notice].nil?
   .noticediv
     .layout
@@ -16,20 +16,20 @@
           %th
             登录账号
           %th
-            用户名
+            名称
           %th
-            状态
+            创建日期
           %th
             管理
       %tbody
         - for user in @users
           %tr
             %td
-              = link_to user.email, ezadmin_user_url(user)
+              = link_to user.login, ezadmin_user_url(user)
             %td
               = user.name
             %td
-              
+              = user.created_at.strftime("%Y-%m-%d")
             %td
               = link_to "编辑", edit_ezadmin_user_url(user)
       %tfoot

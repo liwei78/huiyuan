@@ -1,7 +1,7 @@
 require 'digest'
 
 class ToolBox
-  SITE_SETTINGS = YAML.load_file(File.join(Rails.root.to_s, "config", "site_settings.yml"))[Rails.env]
+  SITE_SETTINGS = YAML.load_file(File.join(Rails.root.to_s, "config", "site_config.yml"))[Rails.env]
   @@key = SITE_SETTINGS["admin_key"]
   @@acc = SITE_SETTINGS["admin_account"]
   @@pwd = SITE_SETTINGS["admin_password"]

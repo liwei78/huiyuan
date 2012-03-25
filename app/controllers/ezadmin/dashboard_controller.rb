@@ -4,6 +4,8 @@ require "tool_box"
 class Ezadmin::DashboardController < ApplicationController
   before_filter :need_admin_login, :only => ["index"]
   
+  layout "admin"
+  
   def login
     render :layout => false
   end
@@ -13,10 +15,10 @@ class Ezadmin::DashboardController < ApplicationController
     respond_to do |format|
       if succ
         session[:admin_key] = ToolBox.admin_key
-        format.html {redirect_to root_url}
+        format.html {redirect_to ezadmin_dashboard_url}
       else
         flash[:error] = '登录失败'
-        format.html {redirect_to login_url}
+        format.html {redirect_to ezadmin_login_url}
       end
     end
   end
@@ -27,7 +29,7 @@ class Ezadmin::DashboardController < ApplicationController
   
   def logout
     session.delete(:admin_key)
-    redirect_to login_url
+    redirect_to ezadmin_login_url
   end
   
 end

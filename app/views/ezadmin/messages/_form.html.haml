@@ -1,25 +1,25 @@
-<%= form_for(@message) do |f| %>
-  <% if @message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
-
-      <ul>
-      <% @message.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+= form_for(message, :url=>(message.new_record? ? ezadmin_messages_url : ezadmin_message_url(message))) do |f|
+  %table.styled
+    %tbody
+      %tr
+        %td
+          标题
+        %td
+          = f.text_field :title, :class => "input"
+      %tr
+        %td
+          内容
+        %td
+          = f.text_area :content, :class => "input"
+      %tr
+        %td
+          
+        %td
+          - unless message.new_record?
+            .right
+              = link_to "删除", ezadmin_message_url(message), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")
+            
+          
+            
+          

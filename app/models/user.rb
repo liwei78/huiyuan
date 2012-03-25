@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   
   validates :login, 
     :presence   => true,
+    :length => {:maximum => 16, :minimum => 1},
     :uniqueness => true
   
   validates :password,

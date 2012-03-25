@@ -2,7 +2,11 @@ Huiyuan::Application.routes.draw do
   resources :users
 
   namespace :ezadmin do
-    resources :messages
+    resources :messages do
+      member do
+        post 'publish'
+      end
+    end
     resources :users
     resources :managers
     match 'login'      => 'dashboard#login',      :as => :login,       :via => :get

@@ -1,25 +1,45 @@
-<h1>Listing messages</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @messages.each do |message| %>
-  <tr>
-    <td><%= message.title %></td>
-    <td><%= message.content %></td>
-    <td><%= link_to 'Show', message %></td>
-    <td><%= link_to 'Edit', edit_message_path(message) %></td>
-    <td><%= link_to 'Destroy', message, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Message', new_message_path %>
+.banner
+  .layout
+    .title
+      列表
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+.layout
+  .h20
+    = nbsp
+  .widebox.left
+    %table.styled
+      %thead
+        %tr
+          %th
+            标题
+          %th
+            状态
+          %th
+            创建日期
+          %th
+            管理
+      %tbody
+        - for message in @messages
+          %tr
+            %td
+              = link_to message.title, ezadmin_message_url(message)
+            %td
+              = message.status
+            %td
+              = message.created_at.strftime("%Y-%m-%d")
+            %td
+              = link_to "编辑", edit_ezadmin_message_url(message)
+              - unless message.publish?
+                = link_to "发布", publish_ezadmin_message_url(message), :method => :post, :confirm => "发布后，全体用户可见该信息。\n\n点击确定继续。"
+      %tfoot
+        %tr
+          %td{:colspan => 4}
+            = will_paginate @messages, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+          
+  .siderbox.right
+    = link_to raw("<strong>添加</strong>"), new_ezadmin_message_url, :class => "add-link"
+  .clearfix
+          

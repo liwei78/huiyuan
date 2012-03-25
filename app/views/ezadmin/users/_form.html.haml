@@ -1,11 +1,11 @@
-= form_for(user) do |f|
+= form_for(user, :url=>(user.new_record? ? ezadmin_users_url : ezadmin_user_url(user))) do |f|
   %table.styled
     %tbody
       %tr
         %td
           登录账号
         %td
-          = f.text_field :email, :class => "input"
+          = f.text_field :login, :class => "input"
       %tr
         %td
           登录密码
@@ -13,35 +13,22 @@
           = f.password_field :password, :class => "input"
       %tr
         %td
+          密码确认
+        %td
+          = f.password_field :password_confirmation, :class => "input"
+      %tr
+        %td
           显示名称
         %td
           = f.text_field :name, :class => "input"
-      %tr
-        %td
-          发布权限
-        %td
-          = f.select :promotion, 0..20
-          %span
-            0表示为黑名单，发布的所有资源均为block,20表示为白名单，发布的资源均不需要审核。
-      %tr
-        %td
-          网站角色
-        %td
-          = f.select :role, [["普通用户", 0], ["设计师", 1], ["商家用户(专卖店)", 2], ["商家用户(百货店)", 3], ["品牌用户", 4]]
-      %tr
-        %td
-          升级申请
-        %td
-          = f.select :upgrade_state, [["无", 0], ["申请中", 1], ["申请通过", 2], ["申请拒绝", 3]]
       %tr
         %td
           
         %td
           - unless user.new_record?
             .right
-              = link_to "删除", user_url(user), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+              = link_to "删除", ezadmin_user_url(user), :title => "删除", :method => "delete", :confirm => "点击确定继续"
           = submit_tag("确定", :class => "submit")
-          = link_to "返回", :back
             
           
             
