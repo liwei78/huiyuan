@@ -8,4 +8,18 @@
     = csrf_meta_tag
     = yield :header
   %body
-    
+    .header
+      .wrapper
+        / .logo
+        /   = link_to site_title, root_url
+        / %ul.nav
+        /   %li.on= link_to "账户"
+        /   .clearfix
+    .content
+      .wrapper
+        = yield
+    .footer
+      .wrapper
+        &copy; 2012
+        = site_title
+        

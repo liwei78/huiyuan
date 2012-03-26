@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120325133351) do
+ActiveRecord::Schema.define(:version => 20120325150741) do
 
   create_table "managers", :force => true do |t|
     t.string   "login"
@@ -21,9 +21,16 @@ ActiveRecord::Schema.define(:version => 20120325133351) do
 
   create_table "messages", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "read",       :default => false
-    t.boolean  "admin_add",  :default => false
     t.boolean  "publish",    :default => false
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_messages", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "read",       :default => false
     t.string   "title"
     t.text     "content"
     t.datetime "created_at"
