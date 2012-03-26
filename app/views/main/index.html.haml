@@ -1,3 +1,29 @@
 .top
   
 .login
+  .login_form
+    .login_div
+      = form_tag(checklogin_url) do
+        %table{:width => "100%", :cellpadding => "6"}
+          %tr
+            %td{:width => "100"} 登陆账号
+            %td= text_field_tag :login, "", :class => "input"
+          %tr
+            %td 密码
+            %td= text_field_tag :password, "", :class => "input"
+          %tr
+            %td 
+            %td
+              = check_box_tag 'remember_me', "true", true
+              = label_tag(:remember_me, "两周内免登陆")
+          %tr
+            %td
+            %td
+              = submit_tag "登录", :class => "submit"
+          - if flash[:error].present?
+            %tr
+              %td
+              %td
+                .errorbox
+                  = flash[:error]
+  

@@ -1,0 +1,20 @@
+.top_blank
+.content_body
+  .content_title
+    信息列表
+  .title-hr
+  .main_content
+    .div_table
+      %table.record{:width => "100%"}
+        %tr
+          %th{:width => "170"} 发布时间
+          %th 标题
+          %tr
+            %td.time= @message.created_at.strftime("%Y-%m-%d %H:%M")
+            %td.title= @message.title.html_safe
+          %tr.odd
+            %td
+            %td= @message.content.html_safe
+          
+= render :partial => "users/sider"
+.clearfix

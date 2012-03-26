@@ -1,0 +1,12 @@
+.siderbar
+  .toptitle
+    .bg_shadow
+  .link_list
+    .bg_shadow
+      %ul
+        %li.current
+          - if @user.has_unread?
+            .right.small.grey
+              = @user.unread_count
+              未读
+          = link_to "信息列表", @user

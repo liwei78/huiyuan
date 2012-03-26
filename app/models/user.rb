@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor  :password
   
+  has_many :user_messages, :order => "user_messages.id desc"
   
   validates :login, 
     :presence   => true,
@@ -50,6 +51,14 @@ class User < ActiveRecord::Base
   
   def site_upgrade_state
     SITE_SETTINGS["site_upgrade_state"][self.upgrade_state]
+  end
+  
+  def has_unread?
+    self.user_messages.unread.count > 0
+  end
+  
+  def unread_count
+    self.user_messages.unread.count
   end
   
   private

@@ -1,5 +1,31 @@
-<p id="notice"><%= notice %></p>
+.top_blank
+.content_body
+  .content_title
+    信息列表
+  .title-hr
+  .main_content
+    .div_table
+      %table.record{:width => "100%"}
+        %tr
+          %th{:width => "170"} 发布时间
+          %th 标题
+        - i = 0
+        - for message in @messages
+          %tr{:class => "#{'odd' if i ==1 }"}
+            %td.time= message.created_at.strftime("%Y-%m-%d %H:%M")
+            %td.title
+              - if message.read?
+                = link_to message.title.html_safe, message, :class => "read"
+              - else
+                %strong
+                  = link_to message.title.html_safe, message
+          - i += 1
+          - i = 0 if i == 2
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    .action
+      = link_to "全部标记为已读", readall_user_messages_url, :method => :post, :confirm => "点击确定继续"
+    = will_paginate @messages, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+    
+          
+= render :partial => "users/sider"
+.clearfix

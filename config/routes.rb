@@ -1,6 +1,10 @@
 Huiyuan::Application.routes.draw do
   resources :users
-
+  resources :user_messages, :only => [:show] do
+    collection do
+      post "readall"
+    end
+  end
   namespace :ezadmin do
     resources :messages do
       member do
@@ -15,6 +19,9 @@ Huiyuan::Application.routes.draw do
     match '/'          => 'dashboard#index',      :as => :dashboard,   :via => :get
   end
   
-  match 'login' => 'main#login',     :as => :login,      :via => :get
+  match 'login' => 'main#login',           :as => :login,      :via => :get
+  match 'logout' => 'main#logout',         :as => :logout,     :via => :get
+  match 'checklogin' => 'main#checklogin', :as => :checklogin, :via => :post
+  
   root :to => 'main#index'
 end

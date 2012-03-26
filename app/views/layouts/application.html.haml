@@ -10,11 +10,24 @@
   %body
     .header
       .wrapper
-        / .logo
-        /   = link_to site_title, root_url
-        / %ul.nav
-        /   %li.on= link_to "账户"
-        /   .clearfix
+        .login
+          - if loggin?
+            您好，
+            = @user.name
+            - if @user.has_unread?
+              ，
+              %span.green
+                您有
+                = @user.unread_count
+                条未读信息
+            [
+            = link_to "退出", logout_url
+            ]
+          - else
+            = link_to "登录", login_url
+        - if flash[:notice].present?
+          .notice
+            = flash[:notice]
     .content
       .wrapper
         = yield

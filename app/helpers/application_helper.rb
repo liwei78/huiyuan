@@ -20,4 +20,7 @@ module ApplicationHelper
     "javascript:void(0);"
   end
 
+  def loggin?
+    session[:signcode]||cookies[:signcode] ? true : false
+  end
 end

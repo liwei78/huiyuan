@@ -66,6 +66,7 @@ class Ezadmin::MessagesController < ApplicationController
     User.find_each(:batch_size => 10) do |user|
       UserMessage.create(:user_id => user.id, :title => @message.title, :content => @message.content)
     end if @message
+    @message.update_attribute(:publish, true)
     respond_to do |format|
       flash[:notice] = '发布成功。所有用户可见该信息。'
       format.html { redirect_to(ezadmin_messages_url) }
