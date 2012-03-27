@@ -35,7 +35,9 @@ class MainController < ApplicationController
   
   def logout
     session.delete(:signcode)
+    session.delete(:user_id)
     cookies.delete(:signcode)
+    cookies.delete(:user_id)
     respond_to do |format|
       format.html { redirect_to root_url }
     end
