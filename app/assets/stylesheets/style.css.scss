@@ -20,15 +20,12 @@ body {
   font-family: 'arial', '宋体', 'sans-serif';
 }
 
-table {
-	table-layout:fixed;
-}
-
 a {
   text-decoration: none;
   color: $secondary_color; }
-  img {
-    border: none; }
+  
+img {
+  border: none; }
 
 a:hover {
   text-decoration: none; }
@@ -77,8 +74,6 @@ ul, ol {
   .wrapper {
     height: 64px;
     margin-top: 40px;
-//    background-image: image-url('bg.gif');
-//    background-position: center 0;
   }
   .login {
     padding: 10px 0;
@@ -158,6 +153,7 @@ ul, ol {
     height: 200px;
     font-size: 16px;
     table {
+      table-layout:fixed;
       tr {
         height: 40px;
         td {
@@ -204,7 +200,6 @@ ul, ol {
       line-height: 48px;
       height: 48px;
       color: #2A89BF;
-      font-family: 微软雅黑, 黑体;
       font-size: 24px;
     }
     .title-hr {
