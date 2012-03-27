@@ -54,11 +54,11 @@ class User < ActiveRecord::Base
   end
   
   def has_unread?
-    self.user_messages.unread.count > 0
+    self.user_messages.present? and self.user_messages.unread.count > 0
   end
   
   def unread_count
-    self.user_messages.unread.count
+    self.user_messages.present? ? self.user_messages.unread.count : 0
   end
   
   private
