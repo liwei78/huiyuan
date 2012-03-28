@@ -1,4 +1,9 @@
-= form_for(message, :url=>(message.new_record? ? ezadmin_messages_url : ezadmin_message_url(message))) do |f|
+- content_for :header do
+  :javascript
+    function add_upload_file() {
+      $('#upload_div').clone().insertBefore('.addmore');}
+
+= form_for(message, :url=>(message.new_record? ? ezadmin_messages_url : ezadmin_message_url(message)), :html => {:multipart => true}) do |f|
   %table.styled
     %tbody
       %tr
@@ -11,6 +16,27 @@
           内容
         %td
           = f.text_area :content, :class => "input"
+      %tr
+        %td
+          下载地址
+        %td
+          = f.text_field :download_url, :class => "input"
+      %tr#upload_div
+        %td 图集
+        %td
+          = file_field_tag "photos[file][]"
+      %tr.addmore
+        %td
+        %td
+          = link_to("增加上传", js_void, :onclick => "add_upload_file();")
+      
+      - if message.new_record? or !message.publish?
+        %tr
+          %td
+          
+          %td
+            = f.check_box 'publish'
+            = label_tag(:message_publish, "向会员发布该信息")
       %tr
         %td
           

@@ -22,6 +22,20 @@
           = @message.content.html_safe
       %tr
         %td
+          下载地址
+        %td
+          = link_to @message.download_url, @message.download_url, :target => "_blank"
+      - if @message.photos.present?
+        - for photo in @message.photos
+          %tr
+            %td
+              图集
+            %td
+              .right
+                = link_to "[删除]", del_photo_ezadmin_message_url(@message, :pid => photo.id), :method => :post, :confirm => "点击确定继续"
+              = link_to image_tag(photo.file.url, :width => 200), photo.file.url, :target => "_blank"
+      %tr
+        %td
           创建日期
         %td
           = @message.created_at.strftime("%Y-%m-%d")

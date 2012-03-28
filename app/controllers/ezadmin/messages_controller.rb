@@ -31,7 +31,24 @@ class Ezadmin::MessagesController < ApplicationController
     @message = Message.new(params[:message])
     respond_to do |format|
       if @message.save
-        flash[:notice] = '添加成功'
+        
+        files = params[:photos].present? ? params[:photos][:file] : []
+        unless files.blank?
+          files.each do |file|
+            Photo.create(:file => file, :message_id => @message.id) if file.present?
+          end
+        end
+        
+        if params[:message][:publish] == "1"
+          User.find_each(:batch_size => 10) do |user|
+            UserMessage.create(:user_id => user.id, :ori_message_id => @message.id, :title => @message.title, :content => @message.content)
+          end if @message
+          @message.update_attribute(:publish, true)
+          flash[:notice] = '添加并发布成功'
+        else
+          flash[:notice] = '添加成功'
+        end
+        
         format.html { redirect_to(ezadmin_message_url(@message)) }
       else
         format.html { render :action => "new" }
@@ -44,7 +61,24 @@ class Ezadmin::MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.update_attributes(params[:message])
-        flash[:notice] = '编辑成功'
+        
+        files = params[:photos].present? ? params[:photos][:file] : []
+        unless files.blank?
+          files.each do |file|
+            Photo.create(:file => file, :message_id => @message.id) if file.present?
+          end
+        end
+        
+        if params[:message][:publish] == "1"
+          User.find_each(:batch_size => 10) do |user|
+            UserMessage.create(:user_id => user.id, :ori_message_id => @message.id, :title => @message.title, :content => @message.content)
+          end if @message
+          @message.update_attribute(:publish, true)
+          flash[:notice] = '编辑并发布成功'
+        else
+          flash[:notice] = '编辑成功'
+        end
+        
         format.html { redirect_to(ezadmin_message_url(@message)) }
       else
         format.html { render :action => "edit" }
@@ -64,13 +98,20 @@ class Ezadmin::MessagesController < ApplicationController
   def publish
     @message = Message.find(params[:id])
     User.find_each(:batch_size => 10) do |user|
-      UserMessage.create(:user_id => user.id, :title => @message.title, :content => @message.content)
+      UserMessage.create(:user_id => user.id, :ori_message_id => @message.id, :title => @message.title, :content => @message.content)
     end if @message
     @message.update_attribute(:publish, true)
     respond_to do |format|
       flash[:notice] = '发布成功。所有用户可见该信息。'
       format.html { redirect_to(ezadmin_messages_url) }
     end
+  end
+  
+  def del_photo
+    message = Message.find(params[:id])
+    photo = message.photos.find(params[:pid])
+    photo.destroy
+    redirect_to ezadmin_message_url(message)
   end
   
   private

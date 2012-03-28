@@ -9,5 +9,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def notice
+    @user = get_current_user
+    respond_to do |format|
+      format.js
+    end
+  end
 
 end

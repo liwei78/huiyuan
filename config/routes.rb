@@ -1,5 +1,9 @@
 Huiyuan::Application.routes.draw do
-  resources :users
+  resources :users do
+    member do
+      post 'notice'
+    end
+  end
   resources :user_messages, :only => [:show] do
     collection do
       post "readall"
@@ -8,7 +12,7 @@ Huiyuan::Application.routes.draw do
   namespace :ezadmin do
     resources :messages do
       member do
-        post 'publish'
+        post 'publish', 'del_photo'
       end
     end
     resources :users

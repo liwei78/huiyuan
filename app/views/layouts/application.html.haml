@@ -35,4 +35,7 @@
       .wrapper
         &copy; 2012
         = site_title
+- if @user and @user.has_unread?
+  .hide
+    %iframe{:src => '/sound.html'}
         
