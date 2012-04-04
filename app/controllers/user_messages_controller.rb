@@ -10,9 +10,9 @@ class UserMessagesController < ApplicationController
   
   def readall
     @user = get_current_user
+    @user.user_messages.each(&:readit) if @user.user_messages.present? 
     # 2012-4-4 fix update_all
-    # @user.user_messages.each(&:readit) if @user.user_messages.present? 
-    UserMessage.where('user_id = ? and read is ?', @user.id, false).update_all(:read => true) if @user.user_messages.present? 
+    # UserMessage.where('user_id = ? and read is ?', @user.id, false).update_all(:read => true) if @user.user_messages.present? 
     flash[:notice] = "全部标记为已读"
     redirect_to @user
   end
