@@ -20,11 +20,25 @@
           内容
         %td
           = @message.content.html_safe
-      %tr
-        %td
-          下载地址
-        %td
-          = link_to @message.download_url, @message.download_url, :target => "_blank"
+      - if @message.videocode.present?
+        %tr
+          %td
+            视频
+          %td
+            = link_to "", @message.videocode, :style => "display:block;width:480px;height:400px", :id => "player"
+            :javascript
+              flowplayer("player", "/player/flowplayer-3.2.7.swf",  {
+              	clip: {
+              		autoPlay: false, 
+              		autoBuffering: false
+              	}
+              });
+      - if @message.download_url.present?
+        %tr
+          %td
+            下载地址
+          %td
+            = link_to @message.download_url, @message.download_url, :target => "_blank"
       - if @message.photos.present?
         - for photo in @message.photos
           %tr

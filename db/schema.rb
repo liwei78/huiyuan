@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328053754) do
+ActiveRecord::Schema.define(:version => 20120404055313) do
 
   create_table "managers", :force => true do |t|
     t.string   "login"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120328053754) do
     t.string   "download_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "videocode"
   end
 
   create_table "photos", :force => true do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20120328053754) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "videocode"
   end
 
   create_table "users", :force => true do |t|

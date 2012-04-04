@@ -280,6 +280,27 @@ table.styled {
 
 .widebox {
   width: 750px;
+  .infoboxs {
+    .box {
+      width: 360px;
+      float: left;
+      .boxtitle {
+        line-height: 18px;
+        margin-top: 18px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #4D5762;
+        a {
+          color: #329ECC;
+          text-decoration: none;
+          border-bottom: 1px solid #A1CFD4;
+        }
+      }
+      .boxcontent {
+        
+      }
+    }
+  }
 }
 
 .siderbox {
@@ -354,6 +375,26 @@ ul.img_list {
   }
 }
 
+.tiny {
+  table-layout:fixed; 
+  width: 100%;
+  a {
+    color: #329ECC;
+    text-decoration: none;
+    border-bottom: 1px solid #A1CFD4;
+  }
+  tr {
+    td {
+      background: none !important;
+      color: #666;
+      border-bottom: 0 none;
+      border-bottom: 1px dotted #DDD !important;
+      line-height: 18px;
+      padding: 4px 8px 4px 0;
+    }
+  }
+  
+}
 
 
 

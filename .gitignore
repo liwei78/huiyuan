@@ -12,3 +12,5 @@ doc/app
 config/database.yml
 Gemfile
 Gemfile.lock
+public/assets/
+public/system/

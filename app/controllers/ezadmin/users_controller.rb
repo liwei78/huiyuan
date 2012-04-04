@@ -6,7 +6,7 @@ class Ezadmin::UsersController < ApplicationController
   layout "admin"
   
   def index
-    @users = User.paginate(:page => params[:page], :per_page => 10, :order => "id desc")
+    @users = User.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
     respond_to do |format|
       format.html
     end

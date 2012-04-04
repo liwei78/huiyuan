@@ -2,5 +2,47 @@
   .layout
     .title
       管理中心
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
 .layout
-    
+  .h20
+    = nbsp
+  .widebox.left
+    .infoboxs
+      .box
+        .boxtitle Admin
+        .boxcontent
+          您正在使用的是中盛会员信息管理平台
+      .clearfix.h20
+      .box
+        .boxtitle 在线用户
+        .boxcontent
+          %table
+            %tr
+              %td
+
+              %td
+
+      .box
+        .boxtitle 统计
+        .boxcontent
+          %table.tiny
+            %tr
+              %td
+                当前用户总数
+              %td
+                = link_to User.count, ezadmin_users_url
+                人
+            %tr
+              %td
+                当前信息总数
+              %td
+                = link_to Message.count, ezadmin_messages_url
+                条
+      .clearfix
+          
+  .siderbox.right
+    = link_to raw("<strong>发布信息</strong>"), new_ezadmin_message_url, :class => "add-link"
+  .clearfix

@@ -10,17 +10,27 @@
         %td
           标题
         %td
-          = f.text_field :title, :class => "input"
+          = f.text_field :title, :class => "input medium"
       %tr
         %td
           内容
         %td
-          = f.text_area :content, :class => "input"
+          = f.text_area :content, :class => "input medium", :rows => 10
+      %tr
+        %td
+          视频地址
+        %td
+          = f.text_field :videocode, :class => "input medium"
+      %tr
+        %td
+          
+        %td.grey
+          请填写.flv等流媒体视频文件地址，如http://www.zhongshengyx.com/sample.flv
       %tr
         %td
           下载地址
         %td
-          = f.text_field :download_url, :class => "input"
+          = f.text_field :download_url, :class => "input medium"
       %tr#upload_div
         %td 图集
         %td

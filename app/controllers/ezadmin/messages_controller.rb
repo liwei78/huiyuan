@@ -6,7 +6,7 @@ class Ezadmin::MessagesController < ApplicationController
   layout "admin"
   
   def index
-    @messages = Message.paginate(:page => params[:page], :per_page => 10, :order => "id desc")
+    @messages = Message.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
     respond_to do |format|
       format.html
     end

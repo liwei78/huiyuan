@@ -23,17 +23,32 @@
           %tr.odd
             %td
             %td= @message.content.html_safe
+          - if @ori_message.videocode.present?
+            %tr
+              %td 视频
+              %td
+                = link_to "", @ori_message.videocode, :style => "display:block;width:480px;height:400px", :id => "player"
+                :javascript
+                  flowplayer("player", "/player/flowplayer-3.2.7.swf",  {
+                  	clip: {
+                  		autoPlay: false, 
+                  		autoBuffering: false
+                  	}
+                  });
           - if @ori_message.download_url.present?
             %tr
               %td 下载地址
-              %td= link_to @ori_message.download_url, @ori_message.download_url, :target => "_blank"
+              %td= link_to "请右键另存该文件", @ori_message.download_url, :target => "_blank"
           - if @ori_message.photos.present?
             - for photo in @ori_message.photos
               %tr
                 %td
                   图集
+                  %br
+                  %span.grey
+                    点击查看大图
                 %td
-                  = link_to image_tag(photo.file.url, :width => 200), photo.file.url, :target => "_blank"
+                  = link_to image_tag(photo.file.url, :width => 200), photo.file.url, :target => "_blank", :title => "点击查看大图"
           
 = render :partial => "users/sider"
 .clearfix
