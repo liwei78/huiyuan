@@ -5,7 +5,7 @@ class UserMessagesController < ApplicationController
     @user = get_current_user
     @message = @user.user_messages.find(params[:id])
     @message.update_attribute(:read, true) if @message
-    @ori_message = Message.find(@message.ori_message_id)
+    @ori_message = Message.find_by_id(@message.ori_message_id)
   end
   
   def readall

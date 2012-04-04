@@ -23,7 +23,7 @@
           %tr.odd
             %td
             %td= @message.content.html_safe
-          - if @ori_message.videocode.present?
+          - if @ori_message and @ori_message.videocode.present?
             %tr
               %td 视频
               %td
@@ -35,11 +35,11 @@
                   		autoBuffering: false
                   	}
                   });
-          - if @ori_message.download_url.present?
+          - if @ori_message and @ori_message.download_url.present?
             %tr
               %td 下载地址
               %td= link_to "请右键另存该文件", @ori_message.download_url, :target => "_blank"
-          - if @ori_message.photos.present?
+          - if @ori_message and @ori_message.photos.present?
             - for photo in @ori_message.photos
               %tr
                 %td
