@@ -13,6 +13,7 @@ gem 'paperclip'
 gem 'execjs'
 gem 'therubyracer'
 gem 'jquery-rails'
+gem 'ckeditor', "3.7.0.rc2"
 
 
 # Gems used only for assets and not required
