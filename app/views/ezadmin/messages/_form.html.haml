@@ -15,7 +15,7 @@
         %td
           内容
         %td
-          = f.text_area :content, :class => "input medium", :rows => 10
+          = f.cktext_area :content, :toolbar => 'Full', :width => 600, :height => 200, :input_html => { :value => message.content }
       %tr
         %td
           视频地址

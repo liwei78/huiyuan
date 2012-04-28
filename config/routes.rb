@@ -1,4 +1,7 @@
 Huiyuan::Application.routes.draw do
+  
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :users do
     member do
       post 'notice'

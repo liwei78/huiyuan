@@ -7,4 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require flowplayer-3.2.6.min
+//= require ckeditor/ckeditor
+//= require ckeditor/config
 
