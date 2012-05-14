@@ -19,7 +19,7 @@
         %td
           内容
         %td
-          = @message.content.html_safe
+          = simple_format(@message.content)
       - if @message.videocode.present?
         %tr
           %td

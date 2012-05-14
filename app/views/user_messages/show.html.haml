@@ -22,7 +22,7 @@
             %td.title= @message.title.html_safe
           %tr.odd
             %td
-            %td= @message.content.html_safe
+            %td= simple_format(@message.content)
           - if @ori_message and @ori_message.videocode.present?
             %tr
               %td 视频
