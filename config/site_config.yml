@@ -1,8 +1,8 @@
 settings: &common
   site_title:      '中盛会员信息平台'
   admin_key:       'china'
-  admin_account:   'admin'
-  admin_password:  'admin'
+  admin_account:   'zhongshengyx'
+  admin_password:  'beijing@123'
   
 development:
   <<: *common
