@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @messages = @user.user_messages.paginate(:page => params[:page], :per_page => 20)
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @user }
+      format.json { render :json => @user }
     end
   end
 
