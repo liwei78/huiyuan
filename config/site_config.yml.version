@@ -3,6 +3,8 @@ settings: &common
   admin_key:       ''
   admin_account:   ''
   admin_password:  ''
+  list_max:        '最近三天'
+  list_per_page:   10
   
 development:
   <<: *common
