@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'test_helper'
 
 class MainControllerTest < ActionController::TestCase
@@ -13,5 +14,30 @@ class MainControllerTest < ActionController::TestCase
     assert_redirected_to user_url(1)
   end
 
+  test "test user login" do
+    puts "Create a new user"
+    user = User.create(:login => "harry", :password => "1234", :password_confirmation => "1234", :name => "potter")
+    
+    puts "First login, ok"
+    post :checklogin, {:login => "harry", :password => "1234"}, nil
+    assert_redirected_to user_url(user)
+    
+    puts "Twice login, error"
+    post :checklogin, {:login => "harry", :password => "1234"}, nil
+    assert_redirected_to root_url
+    assert_equal "您已经处于登录状态，此次登录无效", flash[:error]
+    
+    puts "Error login"
+    user.update_attribute(:online, false)
+    post :checklogin, {:login => "error", :password => "error"}, nil
+    assert_redirected_to root_url
+    assert_equal "登录失败", flash[:error]
+    
+    puts "Logout and Login, ok"
+    get :logout
+    assert_redirected_to root_url
+    post :checklogin, {:login => "harry", :password => "1234"}, nil
+    assert_redirected_to user_url(user)
+  end
 
 end

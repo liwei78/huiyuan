@@ -64,6 +64,14 @@ class User < ActiveRecord::Base
     UserMessage.count(:conditions => ["user_id = ? and read = ?", self.id, false])||0
   end
   
+  def offline
+    !online
+  end
+  
+  def self.online_count
+    count(:conditions => ["online = ?", true])
+  end
+  
   private
   
   def encrypt_something

@@ -19,7 +19,14 @@ Huiyuan::Application.routes.draw do
         post 'publish', 'del_photo'
       end
     end
-    resources :users
+    resources :users do
+      collection do
+        get 'online'
+      end
+      member do
+        post 'kickout'
+      end
+    end
     resources :managers
     match 'login'      => 'dashboard#login',      :as => :login,       :via => :get
     match 'checklogin' => 'dashboard#checklogin', :as => :checklogin,  :via => :post

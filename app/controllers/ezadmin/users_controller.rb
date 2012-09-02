@@ -12,6 +12,13 @@ class Ezadmin::UsersController < ApplicationController
     end
   end
   
+  def online
+    @users = User.paginate(:conditions => ["online = ?", true], :page => params[:page], :per_page => 20, :order => "id desc")
+    respond_to do |format|
+      format.html
+    end
+  end
+  
   def show
     @user = User.find(params[:id])
   end
@@ -58,6 +65,14 @@ class Ezadmin::UsersController < ApplicationController
     respond_to do |format|
       flash[:notice] = '删除成功'
       format.html { redirect_to(ezadmin_users_url) }
+    end
+  end
+  
+  def kickout
+    @id = params[:id]
+    User.update(@id, :online => false)
+    respond_to do |format|
+      format.js
     end
   end
   

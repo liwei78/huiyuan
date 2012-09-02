@@ -19,11 +19,13 @@
       .box
         .boxtitle 在线用户
         .boxcontent
-          %table
+          %table.tiny
             %tr
               %td
-
+                当前在线用户
               %td
+                = link_to User.online_count, online_ezadmin_users_url
+                
 
       .box
         .boxtitle 统计

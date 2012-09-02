@@ -84,7 +84,7 @@ ul, ol {
   }
   .logo {
     padding-top: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
   }
   .nav {
     ul li {
@@ -110,6 +110,9 @@ ul, ol {
       }
     }
   }
+  .login-height {
+    padding-top: 120px;
+  }
 }
 
 .footer {
@@ -120,28 +123,26 @@ ul, ol {
 }
 
 .login-form {
-  padding-top: 20px;
-  .tr {
-    margin-bottom: 20px;
-    color: $secondary_color;
-    .input {
-      border: 1px solid #C4C4C4;
-      padding: 4px;
-      color: #777;
-    }
-    .btn {
-      border: 1px solid #749217;
-      background-color: #6AB620;
-      color: #fff;
-      display: inline-block;
-      padding: 5px 10px;
-      font-size: 14px;
-      border-radius: 4px 4px 4px 4px;
-      cursor: pointer;
-    }
-    .validation-error {
-      color: red;
-    }
+  padding-top: 120px;
+  color: $secondary_color;
+  .input {
+    border: 1px solid #C4C4C4;
+    padding: 4px;
+    color: #777;
+    width: 200px;
+  }
+  .btn {
+    border: 1px solid #749217;
+    background-color: #6AB620;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+  }
+  .validation-error {
+    color: red;
   }
 }
 
@@ -298,7 +299,7 @@ table.styled {
         }
       }
       .boxcontent {
-        
+        margin-right: 10px;
       }
     }
   }
@@ -377,7 +378,7 @@ ul.img_list {
 }
 
 .tiny {
-  table-layout:fixed; 
+  table-layout: fixed; 
   width: 100%;
   a {
     color: #329ECC;

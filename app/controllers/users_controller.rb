@@ -1,27 +1,19 @@
 class UsersController < ApplicationController
+  
   before_filter :need_user_login
+  
   def show
-    @user = get_current_user
     @unread = @user.unread_count
     @messages = UserMessage.paginate(
-      :conditions    => ["user_id = ?", @user.id], 
+      :conditions    => ["user_id = ? and created_at >= ?", @user.id, 3.days.ago], 
       :page          => params[:page], 
-      :per_page      => SITE_SETTINGS["list_per_page"], 
-      :total_entries => SITE_SETTINGS["list_max"])
+      :per_page      => SITE_SETTINGS["list_per_page"])
     respond_to do |format|
       format.html # show.html.erb
     end
   end
 
-  def notice
-    @user = get_current_user
-    respond_to do |format|
-      format.js
-    end
-  end
-  
   def find
-    @user = get_current_user
     @unread = @user.unread_count
     case params[:day]
     when "today"

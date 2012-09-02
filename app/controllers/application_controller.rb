@@ -3,10 +3,6 @@ require 'tool_box'
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  def get_current_user
-    User.find(session[:user_id]||cookies[:user_id]) if loggin?
-  end
-  
   def loggin?
     (session[:signcode].present?||cookies[:signcode].present?) ? true : false
   end
@@ -21,9 +17,18 @@ class ApplicationController < ActionController::Base
   end
   
   def need_user_login
-    unless loggin?
+    if !loggin?
       flash[:notice] = "请登录"
       redirect_to root_url
+    else
+      @user = User.find(session[:user_id]||cookies[:user_id])
+      if @user.offline
+        session.delete(:signcode)
+        session.delete(:user_id)
+        cookies.delete(:signcode)
+        cookies.delete(:user_id)
+        redirect_to root_url
+      end
     end 
   end
   

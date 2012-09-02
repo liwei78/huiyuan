@@ -2,7 +2,6 @@
 class UserMessagesController < ApplicationController
   before_filter :need_user_login
   def show
-    @user = get_current_user
     @unread = @user.unread_count
     @message = @user.user_messages.find(params[:id])
     @message.update_attribute(:read, true) if @message
@@ -10,11 +9,9 @@ class UserMessagesController < ApplicationController
   end
   
   def readall
-    user = get_current_user
-    # user.user_messages.each(&:readit) if user.user_messages.present? 
     # 2012-4-4 fix update_all
-    UserMessage.where('user_id = ? and read is ?', user.id, false).update_all(:read => true) if user.user_messages.present? 
+    UserMessage.update_all(["read = ?", true], ['user_id = ? and read = ?', @user.id, false])
     flash[:notice] = "全部标记为已读"
-    redirect_to user
+    redirect_to @user
   end
 end

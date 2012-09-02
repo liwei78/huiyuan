@@ -9,14 +9,9 @@
     = yield :header
   %body
     .header
-      .login-layout
+      .login-layout.login-height
         .logo
           = image_tag("adminlogo.png")
-        .nav
-          %ul
-            %li
-              = link_to "登录", ezadmin_login_url
-            .clearfix
     .mainbox
       - unless flash[:error].nil?
         .noticediv
@@ -25,16 +20,23 @@
       .login-layout
         .login-form
           = form_tag(ezadmin_checklogin_url) do
-            .tr
-              管理账号
-              %br
-              = text_field_tag(:account, "", :class => "input")
-            .tr
-              管理密码
-              %br
-              = password_field_tag(:password, "", :class => "input")
-            .tr
-              =submit_tag("登录", :class => "btn")
+            %table{:width => "100%", :cellpadding => 6, :cellspacing => 6}
+              %tr
+                %td{:width => "80px"}
+                  管理账号
+                %td
+                  = text_field_tag(:account, "", :class => "input")
+              %tr
+                %td
+                  管理密码
+                %td
+                  = password_field_tag(:password, "", :class => "input")
+              %tr
+                %td
+                  
+                %td
+                  =submit_tag("登录", :class => "btn")
+              
     .footer
       &copy 2012
       = site_title

@@ -1,0 +1,1 @@
+$("#online_<%= @id %>").remove();

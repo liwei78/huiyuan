@@ -50,7 +50,7 @@
           %br
           详细地址:北京市朝阳区东四环中路82号金长安大厦C座1108-1109 备案号：京ICP备11011717号 京公网安备110105006509
         .clearfix
-- if @user and @unread_count.present? and @unread_count > 0
+- if @user and @unread.present? and @unread > 0
   :plain
     <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="0" height="0">
       <param name="movie" value="/sound/pm.swf" />
