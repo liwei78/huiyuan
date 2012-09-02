@@ -5,6 +5,7 @@ Huiyuan::Application.routes.draw do
   resources :users do
     member do
       post 'notice'
+      get  'find'
     end
   end
   resources :user_messages, :only => [:show] do

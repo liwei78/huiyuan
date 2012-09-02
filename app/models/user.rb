@@ -58,7 +58,10 @@ class User < ActiveRecord::Base
   end
   
   def unread_count
-    self.user_messages.present? ? self.user_messages.unread.count : 0
+    # 2012-9-2 liwei
+    # donot use this way again
+    # self.user_messages.present? ? self.user_messages.unread.count : 0
+    UserMessage.count(:conditions => ["user_id = ? and read = ?", self.id, false])||0
   end
   
   private

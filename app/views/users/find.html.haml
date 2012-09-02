@@ -5,16 +5,28 @@
         window.location.reload();
       }, 60000);
     });
+
 .top_blank
 .content_body
   .content_title
-    信息列表
-    %small
-      显示前
-      #{SITE_SETTINGS["list_max"]}
-      条信息
+    信息检索
   .title-hr
   .main_content
+    .div_find
+      %span
+        选择检索范围：
+      = link_to_unless (params[:day].nil? or params[:day] == "today"), "今天", find_user_url(@user, :day => "today")
+      = nbsp(2)
+      = link_to_unless params[:day] == "3days", "最近三天", find_user_url(@user, :day => "3days")
+      = nbsp(2)
+      = link_to_unless params[:day] == "7days", "最近七天", find_user_url(@user, :day => "7days")
+      = nbsp(2)
+      = link_to_unless params[:day] == "1month", "最近一个月", find_user_url(@user, :day => "1month")
+      = nbsp(2)
+      = link_to_unless params[:day] == "6month", "最近六个月", find_user_url(@user, :day => "6month")
+      = nbsp(2)
+      = link_to_unless params[:day] == "all", "全部", find_user_url(@user, :day => "all")
+      
     .div_table
       %table.record{:width => "100%"}
         %tr

@@ -1,14 +1,12 @@
 # encoding: utf-8
 class MainController < ApplicationController
   def index
-    @user = get_current_user
     if loggin?
-      redirect_to @user
+      redirect_to user_url(session[:user_id]||cookies[:user_id])
     end
   end
   
   def login
-    
   end
   
   def checklogin

@@ -5,45 +5,47 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:users)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create user" do
-    assert_difference('User.count') do
-      post :create, user: @user.attributes
-    end
-
-    assert_redirected_to user_path(assigns(:user))
-  end
-
   test "should show user" do
-    get :show, id: @user.to_param
+    get(:show, {'id' => '1'}, {:signcode => "china", :user_id => 1})
     assert_response :success
+    assert assigns(:messages).count == 7
+    assert @user.unread_count == 2
   end
 
-  test "should get edit" do
-    get :edit, id: @user.to_param
+  test "find, default is today" do
+    get(:find, {'id' => '1'}, {:signcode => "china", :user_id => 1})
     assert_response :success
+    assert assigns(:messages).count == 1
   end
 
-  test "should update user" do
-    put :update, id: @user.to_param, user: @user.attributes
-    assert_redirected_to user_path(assigns(:user))
+  test "find 3days" do
+    get(:find, {'id' => '1', :day => "3days"}, {:signcode => "china", :user_id => 1})
+    assert_response :success
+    assert assigns(:messages).count == 3
   end
 
-  test "should destroy user" do
-    assert_difference('User.count', -1) do
-      delete :destroy, id: @user.to_param
-    end
-
-    assert_redirected_to users_path
+  test "find 7days" do
+    get(:find, {'id' => '1', :day => "7days"}, {:signcode => "china", :user_id => 1})
+    assert_response :success
+    assert assigns(:messages).count == 3
   end
+
+  test "find 1month" do
+    get(:find, {'id' => '1', :day => "1month"}, {:signcode => "china", :user_id => 1})
+    assert_response :success
+    assert assigns(:messages).count == 4
+  end
+
+  test "find 6month" do
+    get(:find, {'id' => '1', :day => "6month"}, {:signcode => "china", :user_id => 1})
+    assert_response :success
+    assert assigns(:messages).count == 6
+  end
+
+  test "find all" do
+    get(:find, {'id' => '1', :day => "all"}, {:signcode => "china", :user_id => 1})
+    assert_response :success
+    assert assigns(:messages).count == 7
+  end
+
 end

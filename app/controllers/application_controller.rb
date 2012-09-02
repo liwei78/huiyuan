@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
     (session[:signcode].present?||cookies[:signcode].present?) ? true : false
   end
   
-  
   private
   
   def need_admin_login

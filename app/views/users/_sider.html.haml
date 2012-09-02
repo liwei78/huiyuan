@@ -4,9 +4,11 @@
   .link_list
     .bg_shadow
       %ul
-        %li.current
-          - if @user.has_unread?
+        %li{:class => current_li('show')}
+          - if @unread > 0
             .right.small.grey
-              = @user.unread_count
+              = @unread
               未读
           = link_to "信息列表", @user
+        %li{:class => current_li('find')}
+          = link_to "信息检索", find_user_url(@user)

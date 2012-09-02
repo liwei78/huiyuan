@@ -212,6 +212,10 @@ ul, ol {
       height: 48px;
       color: #2A89BF;
       font-size: 24px;
+      small {
+        font-size: 12px;
+        color: grey;
+      }
     }
     .title-hr {
       height: 5px;
@@ -222,6 +226,16 @@ ul, ol {
     .main_content {
       padding-top: 20px;
       background-repeat: no-repeat;
+      .div_find {
+        line-height: 30px;
+        margin-bottom: 10px;
+        span {
+          color: grey;
+        }
+        a {
+          text-decoration: underline;
+        }
+      }
       .div_table {
         table.record {
           display: table;

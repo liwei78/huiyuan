@@ -10,6 +10,7 @@ doc/app
 *~
 .DS_Store
 config/database.yml
+config/site_config.yml
 Gemfile
 Gemfile.lock
 public/assets/

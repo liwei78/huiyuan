@@ -23,4 +23,16 @@ module ApplicationHelper
   def loggin?
     session[:signcode]||cookies[:signcode] ? true : false
   end
+  
+  def current_li(li_name)
+    str = ''
+    case li_name
+    when 'show'
+      str = "current" if li_name == action_name
+    when 'find'
+      str = "current" if li_name == action_name
+    end
+    str
+  end
+  
 end
