@@ -1,3 +1,4 @@
+# encoding: utf-8
 class User < ActiveRecord::Base
   attr_accessor  :password
   
@@ -61,6 +62,7 @@ class User < ActiveRecord::Base
     # 2012-9-2 liwei
     # donot use this way again
     self.user_messages.present? ? self.user_messages.unread.count : 0
+    # 下面的在服务器上会导致错误，为什么啊？
     # UserMessage.count(:conditions => ["user_id = ? and read = 0", self.id])||0
   end
   
