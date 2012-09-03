@@ -13,13 +13,13 @@
     %table.styled
       %thead
         %tr
-          %th
+          %th{:width => "30%"}
             登录账号
-          %th
+          %th{:width => "30%"}
             名称
-          %th
+          %th{:width => "20%"}
             创建日期
-          %th
+          %th{:width => "20%"}
             管理
       %tbody
         - for user in @users
@@ -32,6 +32,8 @@
               = user.created_at.strftime("%Y-%m-%d")
             %td
               = link_to "编辑", edit_ezadmin_user_url(user)
+              %span{:id => "online_#{user.id}"}
+                = link_to "下线", kickout_ezadmin_user_url(user), :remote => true, :method => :post, :confirm => "点击确定继续" if user.online
       %tfoot
         %tr
           %td{:colspan => 4}
