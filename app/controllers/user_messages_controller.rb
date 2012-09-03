@@ -10,7 +10,7 @@ class UserMessagesController < ApplicationController
   
   def readall
     # 2012-4-4 fix update_all
-    UserMessage.update_all(["read = ?", true], ['user_id = ?', @user.id])
+    UserMessage.where(['user_id = ?', @user.id]).each(&:readit)
     flash[:notice] = "全部标记为已读"
     redirect_to @user
   end

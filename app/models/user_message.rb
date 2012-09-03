@@ -3,6 +3,6 @@ class UserMessage < ActiveRecord::Base
   scope :unread, :conditions => ["user_messages.read = ?", false]
   
   def readit
-    update_attribute(:read, true)
+    update_attribute(:read, true) if !self.read
   end
 end
