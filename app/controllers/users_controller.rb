@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     @messages = UserMessage.paginate(
       :conditions    => ["user_id = ? and created_at >= ?", @user.id, 3.days.ago], 
       :page          => params[:page], 
-      :per_page      => SITE_SETTINGS["list_per_page"])
+      :per_page      => SITE_SETTINGS["list_per_page"],
+      :order         => "id desc")
     respond_to do |format|
       format.html # show.html.erb
     end
@@ -33,8 +34,9 @@ class UsersController < ApplicationController
     end
     @messages = @user.user_messages.paginate(
       :conditions => condition, 
-      :page     => params[:page], 
-      :per_page => SITE_SETTINGS["list_per_page"])
+      :page       => params[:page], 
+      :per_page   => SITE_SETTINGS["list_per_page"],
+      :order      => "id desc")
     respond_to do |format|
       format.html # show.html.erb
     end
