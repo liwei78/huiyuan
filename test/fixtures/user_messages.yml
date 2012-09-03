@@ -1,18 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   user_id: 1
   title: MyString1
   content: MyText
   created_at: <%= Time.now() %>
 
 two:
+  id: 2
   user_id: 1
   title: MyString2
   content: MyText
   created_at: <%= 1.day.ago %>
 
 thr:
+  id: 3
   user_id: 1
   title: MyString3
   content: MyText
@@ -20,6 +23,7 @@ thr:
   read: true
 
 for:
+  id: 4
   user_id: 1
   title: MyString4
   content: MyText
@@ -27,6 +31,7 @@ for:
   read: true
 
 fiv:
+  id: 5
   user_id: 1
   title: MyString5
   content: MyText
@@ -34,6 +39,7 @@ fiv:
   read: true
 
 six:
+  id: 6
   user_id: 1
   title: MyString6
   content: MyText
@@ -41,6 +47,7 @@ six:
   read: true
 
 sev:
+  id: 7
   user_id: 1
   title: MyString7
   content: MyText

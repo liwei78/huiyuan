@@ -66,6 +66,14 @@ class User < ActiveRecord::Base
     # UserMessage.count(:conditions => ["user_id = ? and read = 0", self.id])||0
   end
   
+  def get_online
+    update_attribute(:online, true)
+  end
+  
+  def get_offline
+    update_attribute(:online, false)
+  end
+  
   def offline
     !online
   end

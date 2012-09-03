@@ -12,4 +12,10 @@ class UserMessagesControllerTest < ActionController::TestCase
     assert_redirected_to user_url(@user)
   end
   
+  test "show" do
+    get :show, {'id' => '1'}, {:signcode => "china", :user_id => 1}
+    assert_response :success
+    assert assigns(:message).read == true
+  end
+  
 end

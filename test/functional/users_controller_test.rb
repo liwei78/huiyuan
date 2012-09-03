@@ -9,8 +9,7 @@ class UsersControllerTest < ActionController::TestCase
     get(:show, {'id' => @user.id}, {:signcode => "signcode1", :user_id => @user.id})
     assert_response :success
     assert assigns(:messages).count == 3
-    assert assigns(:unread).count == 3
-    assert @user.unread_count == 2
+    assert assigns(:unread) == 2
   end
 
   test "find, default is today" do

@@ -4,7 +4,7 @@ class UserMessagesController < ApplicationController
   def show
     @unread = @user.unread_count
     @message = @user.user_messages.find(params[:id])
-    @message.update_attribute(:read, true) if @message
+    @message.readit if @message
     @ori_message = Message.find_by_id(@message.ori_message_id)
   end
   

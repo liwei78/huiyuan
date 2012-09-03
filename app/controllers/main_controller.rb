@@ -6,12 +6,6 @@ class MainController < ApplicationController
     end
   end
   
-  def login
-    if loggin?
-      redirect_to user_url(session[:user_id]||cookies[:user_id])
-    end
-  end
-  
   def checklogin
     user = User.authenticate(params[:login], params[:password])
     respond_to do |format|
@@ -33,12 +27,27 @@ class MainController < ApplicationController
         format.html {redirect_to user}
       else
         if user and user.online
-          flash[:error] = "您已经处于登录状态，此次登录无效"
+          flash[:error] = "您已经处于登录状态，此次登录无效。<a href='/force_logout'>点击此处注销登陆</a>"
         else
           flash[:error] = "登录失败"
         end
         format.html {redirect_to root_url}
       end
+    end
+  end
+  
+  def checkforcelogout
+    user = User.authenticate(params[:login], params[:password])
+    respond_to do |format|
+      if user
+        user.update_attribute(:online, false) if user.online
+        flash[:notice] = "申请成功，请重新登陆"
+        format.html {redirect_to root_url}
+      else
+        flash[:error] = "申请失败"
+        format.html {redirect_to force_logout_url}
+      end
+      
     end
   end
   

@@ -25,7 +25,7 @@ class MainControllerTest < ActionController::TestCase
     puts "Twice login, error"
     post :checklogin, {:login => "harry", :password => "1234"}, nil
     assert_redirected_to root_url
-    assert_equal "您已经处于登录状态，此次登录无效", flash[:error]
+    assert_equal "您已经处于登录状态，此次登录无效。<a href='/force_logout'>点击此处注销登陆</a>", flash[:error]
     
     puts "Error login"
     user.update_attribute(:online, false)
@@ -38,6 +38,19 @@ class MainControllerTest < ActionController::TestCase
     assert_redirected_to root_url
     post :checklogin, {:login => "harry", :password => "1234"}, nil
     assert_redirected_to user_url(user)
+  end
+  
+  test "force user logout" do
+    puts "Create a new logout user"
+    user = User.create(:login => "outme", :password => "1234", :password_confirmation => "1234", :name => "outme", :online => true)
+    
+    post :checkforcelogout, {:login => "error", :password => "error"}
+    assert_equal "申请失败", flash[:error]
+    assert_redirected_to force_logout_url
+    
+    post :checkforcelogout, {:login => "outme", :password => "1234"}
+    assert_equal "申请成功，请重新登陆", flash[:notice]
+    assert_redirected_to root_url
   end
 
 end

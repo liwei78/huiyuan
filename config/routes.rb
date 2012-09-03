@@ -34,9 +34,10 @@ Huiyuan::Application.routes.draw do
     match '/'          => 'dashboard#index',      :as => :dashboard,   :via => :get
   end
   
-  match 'login' => 'main#login',           :as => :login,      :via => :get
-  match 'logout' => 'main#logout',         :as => :logout,     :via => :get
-  match 'checklogin' => 'main#checklogin', :as => :checklogin, :via => :post
+  match 'logout'           => 'main#logout',           :as => :logout,     :via => :get
+  match 'force_logout'     => 'main#force_logout',     :as => :force_logout, :via => :get
+  match 'checklogin'       => 'main#checklogin',       :as => :checklogin, :via => :post
+  match 'checkforcelogout' => 'main#checkforcelogout', :as => :checkforcelogout, :via => :post
   
   root :to => 'main#index'
 end
