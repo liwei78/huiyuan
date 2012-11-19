@@ -147,6 +147,7 @@ ul, ol {
     height: 100px;
     background-image: image-url('top.gif');
   }
+  
   .login {
     border: 1px solid #3A7DC8;
     border-top-width: 0;
@@ -195,6 +196,62 @@ ul, ol {
       }
     }
   }
+  
+  .apply {
+    border: 1px solid #3A7DC8;
+    border-top-width: 0;
+    height: 700px;
+  }
+  .apply_form {
+    width: 751px;
+    float: left;
+    padding-top: 50px;
+    padding-left: 78px;
+    font-size: 14px;
+  }
+  .apply_div {
+    padding-top: 20px;
+    top: 20px;
+    left: 30px;
+    width: 670px;
+    height: 200px;
+    font-size: 16px;
+    table {
+      table-layout:fixed;
+      tr {
+        height: 40px;
+        td {
+          .input {
+            background-image: image-url("textbox.gif");
+            border-width: 0;
+            height: 14px;
+            line-height: 14px;
+            padding: 13px 12px;
+            width: 207px;
+          }
+          span {
+            color: #666;
+          }
+          .highlight {
+            color: red !important;
+          }
+          .submit {
+            display: block;
+            width: 80px;
+            height: 30px;
+            margin: 0;
+            padding: 0;
+            background: image-url("btn_log.gif") no-repeat;
+            border: 0;
+            text-indent: -99999px;
+            cursor: pointer;
+          }
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+  
   .top_blank {
     height: 8px;
     overflow: hidden;

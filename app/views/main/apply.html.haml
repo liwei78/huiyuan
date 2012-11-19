@@ -1,0 +1,41 @@
+.top
+  
+.apply
+  .apply_form
+    .apply_div
+      = form_tag(checkapply_url) do
+        %table{:width => "100%", :cellpadding => "6"}
+          %tr
+            %td{:width => "100"} 姓名
+            %td
+              = text_field_tag :name, (@apply.nil? ? "" : @apply.name), :class => "input"
+              %span{:class => "#{'highlight' if @apply and @apply.errors.include?(:name)}"}
+                请填入您的真实姓名
+          %tr
+            %td{:width => "100"} 手机
+            %td
+              = text_field_tag :phone, (@apply.nil? ? "" : @apply.phone), :class => "input"
+              %span{:class => "#{'highlight' if @apply and @apply.errors.include?(:phone)}"}
+                请填写您的手机号码
+          %tr
+            %td{:width => "100"} 邮箱地址
+            %td
+              = text_field_tag :email, (@apply.nil? ? "" : @apply.email), :class => "input"
+              %span{:class => "#{'highlight' if @apply and @apply.errors.include?(:email)}"}
+                请填写有效邮箱，这是与您联系的重要渠道
+          %tr
+            %td{:width => "100"} 详细地址
+            %td
+              = text_field_tag :address, (@apply.nil? ? "" : @apply.address), :class => "input"
+              %span{:class => "#{'highlight' if @apply and @apply.errors.include?(:address)}"}
+                请填写您的详细地址
+          %tr
+            %td
+            %td
+              = submit_tag "提交申请", :class => "submit"
+          - if flash[:error].present?
+            %tr
+              %td
+              %td
+                .errorbox
+                  = flash[:error].html_safe

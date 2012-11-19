@@ -62,4 +62,13 @@ class MainController < ApplicationController
     end
   end
   
+  def checkapply
+    @apply = Apply.new(:name => params[:name], :phone => params[:phone], :email => params[:email], :address => params[:address])
+    if @apply.save
+      redirect_to success_url
+    else
+      render :action => :apply
+    end
+  end
+  
 end

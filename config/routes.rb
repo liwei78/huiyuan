@@ -1,7 +1,7 @@
 Huiyuan::Application.routes.draw do
   
   mount Ckeditor::Engine => '/ckeditor'
-
+  
   resources :users do
     member do
       post 'notice'
@@ -14,6 +14,7 @@ Huiyuan::Application.routes.draw do
     end
   end
   namespace :ezadmin do
+    resources :applies, :only => [:index, :destroy] 
     resources :messages do
       member do
         post 'publish', 'del_photo'
@@ -36,6 +37,9 @@ Huiyuan::Application.routes.draw do
   
   match 'logout'           => 'main#logout',           :as => :logout,     :via => :get
   match 'force_logout'     => 'main#force_logout',     :as => :force_logout, :via => :get
+  match 'apply'            => 'main#apply',            :as => :apply,      :via => :get
+  match 'checkapply'       => 'main#checkapply',       :as => :checkapply, :via => :post
+  match 'success'          => 'main#success',          :as => :success, :via => :get
   match 'checklogin'       => 'main#checklogin',       :as => :checklogin, :via => :post
   match 'checkforcelogout' => 'main#checkforcelogout', :as => :checkforcelogout, :via => :post
   

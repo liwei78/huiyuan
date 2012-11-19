@@ -1,0 +1,46 @@
+.banner
+  .layout
+    .title
+      列表
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+.layout
+  .h20
+    = nbsp
+  .widebox.left
+    %table.styled
+      %thead
+        %tr
+          %th
+            姓名
+          %th
+            电话
+          %th
+            邮箱
+          %th
+            地址
+          %th
+            管理
+      %tbody
+        - for apply in @applies
+          %tr{:id => "apply_#{apply.id}"}
+            %td
+              = apply.name
+            %td
+              = apply.phone
+            %td
+              = apply.email
+            %td
+              = apply.address
+            %td
+              = link_to "删除", ezadmin_apply_url(apply), :remote => true, :method => :delete, :confirm => "点击确定继续"
+      %tfoot
+        %tr
+          %td{:colspan => 5}
+            = will_paginate @applies, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+          
+  .siderbox.right
+    
+  .clearfix

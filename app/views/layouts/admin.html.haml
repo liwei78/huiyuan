@@ -24,6 +24,8 @@
               = link_to "用户管理", ezadmin_users_url, :class => admin_nav?("users")
             %li
               = link_to "信息管理", ezadmin_messages_url, :class => admin_nav?("messages")
+            %li
+              = link_to "申请管理", ezadmin_applies_url, :class => admin_nav?("applies")
             .clearfix
     .mainbox
       = yield
