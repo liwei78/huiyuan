@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Apply < ActiveRecord::Base
   validates :name, :presence   => true
   validates :phone, :presence   => true
