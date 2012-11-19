@@ -1,6 +1,6 @@
 class CreateApplies < ActiveRecord::Migration
   def change
-    create_table :applies do |t|
+    create_table :applies, :options => "CHARSET=utf8" do |t|
       t.string :name
       t.string :phone
       t.string :telphone
